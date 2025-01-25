@@ -8,6 +8,8 @@ class User < ApplicationRecord
   validates :cpf, presence: true, uniqueness: { case_sensitive: false }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
+  has_one :cart, dependent: :destroy
+
   attr_writer :login
 
   # override devise authentication methods to allow login with cpf or email
