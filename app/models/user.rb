@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
 
+  validates :cpf,   presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
+  
   attr_writer :login
 
   # override devise authentication methods to allow login with cpf or email
