@@ -11,4 +11,12 @@ class CartItem < ApplicationRecord
   def total_value_cents
     quantity * product.price_cents
   end
+
+  def data
+    {
+      product:           product,
+      quantity:          quantity,
+      unit_price_cents:  product.price_cents
+    }
+  end
 end

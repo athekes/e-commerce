@@ -22,4 +22,8 @@ class Cart < ApplicationRecord
   def total_value_cents
     cart_items.sum(&:total_value_cents)
   end
+
+  def data
+    { user: user, cart_items_data: cart_items.map(&:data) }
+  end
 end

@@ -28,4 +28,19 @@ RSpec.describe CartItem, type: :model do
       expect(cart_item.total_value).to eq(20.0)
     end
   end
+
+  describe '#data' do
+    it 'returns the cart item data' do
+      product   = Product.new(price_cents: 1000)
+      cart_item = CartItem.new(quantity: 2, product: product)
+
+      expect(cart_item.data).to eq(
+        {
+          product:           product,
+          quantity:          2,
+          unit_price_cents:  1000
+        }
+      )
+    end
+  end
 end
