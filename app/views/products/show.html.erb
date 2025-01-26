@@ -1,5 +1,30 @@
 <div class='flex flex-col'>
-  <%= link_to 'Back', products_path, class: 'text-md font-medium text-gray-700' %>
+  <div class="rounded border p-5">
+    <div class='md:flex justify-between items-center p-4'>
+      <img class="w-full" src="<%= @product.image_url %>" alt="<%= @product.name %>">
 
-  <%= render partial: 'product', locals: { product: @product } %>
+      <div class="md:px-4 py-4">
+        <div class="text-2xl font-bold text-gray-700"><%= @product.name %></div>
+
+        <p class="text-sm font-medium text-gray-700">
+          <%= @product.description %>
+        </p>
+        <p class="text-xl mt-5 text-bold text-gray-700">
+          $<%= @product.price %>
+        </p>
+        <p class="text-sm text-gray-600 ">
+          Stock: <%= @product.stock_quantity %>
+        </p>
+
+        <%= form_with model: @cart_item, method: :post do |f| %>
+          <%= f.hidden_field :product_id, value: @product.id %>
+
+          <%= f.label :quantity, class: 'block mt-5 text-sm font-bold text-gray-700' %>
+          <%= f.number_field :quantity, in: 1..@product.stock_quantity, class: 'w-full py-2 px-3 shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline'%>
+
+          <%= f.submit 'Add to Cart', class: 'mt-2 py-2 font-medium text-gray-700 cursor-pointer' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

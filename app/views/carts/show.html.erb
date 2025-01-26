@@ -1,0 +1,19 @@
+<div class="flex flex-col">
+  <div class='flex justify-between items-center'>
+    <h1 class='text-2xl font-bold text-gray-700'> Carrinho </h1>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-4 mt-4">
+    <% @cart.cart_items.order(:id).each do |cart_item| %>
+      <%= render partial: 'cart_items/cart_item', locals: { cart_item: cart_item } %>
+    <% end %>
+  </div>
+
+  <div class='flex my-4 justify-end'>
+    <div class='flex flex-col items-end'>
+      <%= render partial: 'cart_total', locals: { cart: @cart } %>
+    
+      <%= link_to 'Finalizar compra', '#', class: 'w-48 text-center bg-indigo-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' %>
+    </div>
+  </div>
+</div>

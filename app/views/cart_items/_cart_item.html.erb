@@ -1,0 +1,33 @@
+<div id='<%= dom_id(cart_item) %>' class="border p-4">
+    <%= link_to cart_item.product do %>
+      <div class='flex justify-between items-center'>
+        <h2 class="text-lg font-medium text-gray-700"><%= cart_item.product.name %></h2>
+
+        <%= link_to 'Remove', cart_item, data: {  turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-red-500' %>
+      </div>
+    <% end %>
+
+    <%= image_tag cart_item.product.image_url, class: 'w-64 h-64' %>
+
+    <p class="mt-2 text-sm font-medium text-gray-700"><%= cart_item.product.description.truncate(155) %></p>
+    
+    <div class="flex justify-between items-center">
+      <p class="text-xl mt-5 text-bold text-gray-700">R$ <%= cart_item.product.price %></p>
+
+      <div class='mt-5' >
+        <div class='flex'>
+          <%= link_to cart_item_path(cart_item, cart_item: { quantity: cart_item.quantity - 1 }), data: { turbo_method: :patch } do %>
+            <div class='text-3xl mr-2 cursor-pointer'> - </div>
+          <% end %>
+
+          <div class='inline-block w-32 border rounded-md text-center'>
+            <p class='mt-1 mb-1'> <%= cart_item.quantity %> </p>
+          </div>
+
+          <%= link_to cart_item_path(cart_item, cart_item: { quantity: cart_item.quantity + 1 }), data: { turbo_method: :patch } do %>
+            <div class='text-3xl ml-2 cursor-pointer'> + </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+</div>
