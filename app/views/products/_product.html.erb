@@ -1,7 +1,7 @@
-<div class="rounded shadow-lg">
+<div class="rounded shadow-lg p-5">
   <div class='md:flex justify-between items-center p-4'>
     <img class="w-full" src="<%= product.image_url %>" alt="<%= product.name %>">
-    
+
     <div class="px-6 py-4">
       <div class="text-2xl font-bold text-gray-700"><%= product.name %></div>
 
@@ -14,15 +14,15 @@
       <p class="text-sm text-gray-600 ">
         Stock: <%= product.stock_quantity %>
       </p>
+
+      <%= form_with model: @cart_item, method: :post do |f| %>
+        <%= f.hidden_field :product_id, value: product.id %>
+
+        <%= f.label :quantity, class: 'block mt-5 text-sm font-bold text-gray-700' %>
+        <%= f.number_field :quantity, in: 1..product.stock_quantity, class: 'w-full py-2 px-3 shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline'%>
+
+        <%= f.submit 'Add to Cart', class: 'mt-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700' %>
+      <% end %>
     </div>
-  </div>
-
-  <div class="px-6 pt-4 pb-2">
-    <label for="quantity" class="block text-sm font-bold text-gray-700 mb-2">Quantity:</label>
-    <input type="number" id="quantity" name="quantity" min="1" max="<%= product.stock_quantity %>" value="1" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-
-    <button class="flex justify-center mt-4 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700">
-      Add to Cart
-    </button>
   </div>
 </div>

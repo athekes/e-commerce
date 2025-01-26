@@ -5,5 +5,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+
+    @cart_item = CartItem.new(product: @product, quantity: 1)
   end
 end

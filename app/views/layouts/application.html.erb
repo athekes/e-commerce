@@ -24,8 +24,23 @@
   </head>
 
   <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= yield %>
+    <main class="container mx-auto mt-5 px-5">
+      <% if user_signed_in? %>
+        <div class='flex justify-between bg-gray-200 p-4 sticky top-0'>
+          <h1 class="md:hidden text-3xl font-bold text-gray-700"> E </h1>
+          <h1 class="hidden md:block text-3xl font-bold text-gray-700"> E-commerce </h1>
+
+          <div class='flex items-center text-md font-medium text-gray-700'>
+            <%= render partial: 'carts/min_cart', locals: { cart: @cart } %>
+          </div>
+
+          <%= link_to 'log out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'text-md font-medium text-gray-700' %>
+        </div>
+      <% end %>
+
+      <div class='mt-28'>
+        <%= yield %>
+      </div>
     </main>
 
     <p class="notice"><%= notice %></p>
