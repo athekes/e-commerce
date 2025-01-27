@@ -34,6 +34,6 @@ class Order < ApplicationRecord
   private
 
   def order_items_present
-    errors.add(:order_items, 'must be present') if order_items.empty?
+    errors.add(:order_items, 'devem estar presentes')if order_items.empty?
   end
 end

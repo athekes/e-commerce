@@ -3,9 +3,9 @@ class CartItemsController < ApplicationController
     cart_item = CartItem.new(cart_item_params)
 
     if @cart.add_cart_item(cart_item)
-      flash.now[:notice] = 'Cart item added successfully'
+      flash.now[:notice] = 'Item do carrinho adicionado com sucesso'
     else
-      flash.now[:alert]  = 'Cart item could not be added'
+      flash.now[:alert]  = 'Item do carrinho não pôde ser adicionado'
     end
   end
 
@@ -13,9 +13,9 @@ class CartItemsController < ApplicationController
     @cart_item = @cart.cart_items.find(params[:id])
 
     if @cart_item.update(cart_item_params)
-      flash.now[:notice] = 'Cart item updated successfully'
+      flash.now[:notice] = 'Item do carrinho atualizado com sucesso'
     else
-      flash.now[:alert] =  'Cart item could not be updated'
+      flash.now[:alert] =  'Item do carrinho não pôde ser atualizado'
     end
   end
 
@@ -23,9 +23,9 @@ class CartItemsController < ApplicationController
     @cart_item = @cart.cart_items.find(params[:id])
     
     if @success = @cart_item.destroy
-      flash.now[:notice] = 'Cart item removed successfully'
+      flash.now[:notice] = 'Item do carrinho removido com sucesso'
     else
-      flash.now[:alert] =  'Cart item could not be removed'
+      flash.now[:alert] = 'Item do carrinho não pôde ser removido'
     end
   end
 

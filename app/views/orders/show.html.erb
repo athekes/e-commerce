@@ -2,46 +2,56 @@
 
   <div class='flex flex-col '>
     <div class='flex justify-between items-center'>
-      <h2 class='text-xl font-bold text-gray-700'> Order Details </h2>
+      <h2 class='text-xl font-bold text-gray-700'> Detalhes da compra </h2>
     </div>
 
     <div class='flex flex-col mt-4'>
       <div class='flex justify-between items-center'>
-        <h3 class='text-lg  text-gray-700'> Order ID </h3>
+        <h3 class='text-lg  text-gray-700'> ID da compra </h3>
         <p class='text-lg text-gray-700'> <%= @order.id %> </p>
       </div>
 
       <div class='flex justify-between items-center mt-2'>
-        <h3 class='text-lg  text-gray-700'> Order Date </h3>
+        <h3 class='text-lg  text-gray-700'> Data da compra </h3>
         <p class='text-lg text-gray-700'> <%= @order.created_at.strftime('%d %b %Y') %> </p>
       </div>
 
       <div class='flex justify-between items-center mt-2'>
-        <h3 class='text-lg  text-gray-700'> Order Status </h3>
+        <h3 class='text-lg  text-gray-700'> Status da compra </h3>
         <p class='text-lg text-gray-700'> <%= @order.status %> </p>
       </div>
 
       <!-- Displaying the order items -->
       <div class='flex flex-col mt-4'>
         <div class='flex justify-between items-center'>
-          <h3 class='text-lg font-bold text-gray-700'> Order Items </h3>
+          <h3 class='text-lg font-bold text-gray-700'> Itens </h3>
         </div>
 
-        <div class='flex flex-col mt-4'>
-          <% @order.order_items.each do |order_item| %>
-            <div class='flex justify-between items-center'>
-              <p class='text-lg text-gray-700'> <%= order_item.product.name %> </p>
-              <p class='text-lg text-gray-700'> <%= order_item.quantity %> </p>
-              <p class='text-lg text-gray-700'> $<%=order_item.total_value %> </p>
-            </div>
-          <% end %>
-        </div>
-
-      </div>
+          <div class='flex flex-col mt-4'>
+            <table class='min-w-full bg-white'>
+              <thead>
+                <tr>
+                  <th class=' px-4 py-2 border text-gray-700 text-left'>Produto</th>
+                  <th class=' px-4 py-2 border text-gray-700 text-left'>Quantidade</th>
+                  <th class=' px-4 py-2 border text-gray-700 text-left'>Valor Unitário</th>
+                  <th class=' px-4 py-2 border text-gray-700 text-left'>Valor Total</th>
+                </tr>
+              </thead>    <tbody>
+                <% @order.order_items.each do |order_item| %>
+            <tr>
+              <td class='px-4 py-2 border'><%= order_item.product.name %></td>
+              <td class='px-4 py-2 border'><%= order_item.quantity %></td>
+              <td class='px-4 py-2 border'>R$ <%= order_item.unit_price_cents/100.0 %></td>
+              <td class='px-4 py-2 border'>R$ <%= order_item.total_value %></td>
+            </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>    </div>
 
       <div class='flex justify-between items-center mt-2'>
-        <h3 class='text-lg font-bold text-gray-700'> Total Amount </h3>
-        <p class='text-lg text-gray-700'> <%= @order.total_value %> </p>
+        <h3 class='text-lg font-bold text-gray-700'> Total </h3>
+        <p class='text-lg text-gray-700'> R$ <%= @order.total_value %> </p>
       </div>
     </div>
   </div>

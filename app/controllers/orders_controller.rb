@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     if @order.save
       @cart.destroy
 
-      redirect_to order_path(@order), notice: 'Order placed successfully'      
+      redirect_to order_path(@order), notice: 'Pedido realizado com sucesso'
     else
       redirect_to @cart, alert: @order.errors.full_messages.join(', ')
     end

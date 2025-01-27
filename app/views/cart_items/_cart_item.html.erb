@@ -1,13 +1,13 @@
-<div id='<%= dom_id(cart_item) %>' class="border p-4">
+<div id='<%= dom_id(cart_item) %>' class="border rounded-lg p-4">
     <%= link_to cart_item.product do %>
       <div class='flex justify-between items-center'>
         <h2 class="text-lg font-medium text-gray-700"><%= cart_item.product.name %></h2>
 
-        <%= link_to 'Remove', cart_item, data: {  turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'text-red-500' %>
+        <%= link_to 'Remover', cart_item, data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
       </div>
     <% end %>
 
-    <%= image_tag cart_item.product.image_url, class: 'w-64 h-64' %>
+    <%= image_tag cart_item.product.image_url %>
 
     <p class="mt-2 text-sm font-medium text-gray-700"><%= cart_item.product.description.truncate(155) %></p>
     

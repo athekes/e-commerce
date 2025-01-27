@@ -1,0 +1,26 @@
+"pt-BR":
+  activerecord:
+    models:
+      user: "Usuário"
+      order: "Compra"
+    attributes:
+      user:
+        cpf: "CPF"
+        email: "E-mail"
+        password: "Senha"
+        password_confirmation: "Confirmação de senha"
+      order:
+        order_items: "Itens da compra"
+
+    errors:
+      messages:
+        record_invalid: "Falha ao salvar o registro: %{errors}"
+        restrict_dependent_destroy:
+          has_many: "Não é possível excluir o registro pois existem registros associados."
+          has_one:  "Não é possível excluir o registro pois existem registros associados."
+        taken: "já cadastrado"
+        invalid: "inválido"
+        blank: "não pode ser em branco"
+        confirmation: "não confere"
+        too_short: "muito curta"
+        too_long: "muito longa"
