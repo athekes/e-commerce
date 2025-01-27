@@ -1,0 +1,7 @@
+<% if @success %>
+  <%= turbo_stream.remove(@cart_item) %>
+  <%= turbo_stream.replace(@cart, partial: 'carts/min_cart', locals: { cart: @cart }) %>
+  <%= turbo_stream.replace('cart_total', partial: 'carts/cart_total', locals: { cart: @cart }) %>
+<% end %>
+
+<%= turbo_stream.replace('flash', partial: 'shared/flash') %>
