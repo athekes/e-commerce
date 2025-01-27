@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
     if @order.save
       @cart.destroy
 
-      redirect_to order_path(@order)      
+      redirect_to order_path(@order), notice: 'Order placed successfully'      
     end
   end
 end

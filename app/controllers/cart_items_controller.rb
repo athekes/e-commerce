@@ -2,19 +2,27 @@ class CartItemsController < ApplicationController
   def create
     cart_item = CartItem.new(cart_item_params)
 
-    cart.add_cart_item(cart_item)
+    if cart.add_cart_item(cart_item)
+      flash.now[:notice] = 'Cart item added successfully'
 
-    render turbo_stream: turbo_stream.replace(cart, partial: 'carts/min_cart', locals: { cart: cart })
+      render turbo_stream: [
+        turbo_stream.replace(cart, partial: 'carts/min_cart', locals: { cart: cart }),
+        turbo_stream.replace('flash', partial: 'shared/flash', locals: { flash: flash }),
+      ]
+    end
   end
 
   def update
     cart_item = cart.cart_items.find(params[:id])
 
     if cart_item.update(cart_item_params)
+      flash.now[:notice] = 'Cart item updated successfully'
+
       render turbo_stream: [
         turbo_stream.replace(cart_item),
         turbo_stream.replace(cart, partial: 'carts/min_cart', locals: { cart: cart }),
         turbo_stream.replace('cart_total', partial: 'carts/cart_total', locals: { cart: cart }),
+        turbo_stream.replace('flash', partial: 'shared/flash', locals: { flash: flash }),
       ]
     end
   end
@@ -23,10 +31,13 @@ class CartItemsController < ApplicationController
     cart_item = cart.cart_items.find(params[:id])
 
     if cart_item.destroy
+      flash.now[:notice] = 'Cart item removed successfully'
+
       render turbo_stream: [
         turbo_stream.remove(cart_item),
         turbo_stream.replace(cart, partial: 'carts/min_cart', locals: { cart: cart }),
         turbo_stream.replace('cart_total', partial: 'carts/cart_total', locals: { cart: cart }),
+        turbo_stream.replace('flash', partial: 'shared/flash', locals: { flash: flash }),
       ]
     end
   end
