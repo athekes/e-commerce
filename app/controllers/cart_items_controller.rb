@@ -7,8 +7,12 @@ class CartItemsController < ApplicationController
 
       render turbo_stream: [
         turbo_stream.replace(cart, partial: 'carts/min_cart', locals: { cart: cart }),
-        turbo_stream.replace('flash', partial: 'shared/flash', locals: { flash: flash }),
+        turbo_stream.replace('flash', partial: 'shared/flash'),
       ]
+    else
+      flash.now[:alert] = 'Cart item could not be added'
+
+      render turbo_stream: turbo_stream.replace('flash', partial: 'shared/flash')
     end
   end
 
@@ -22,8 +26,12 @@ class CartItemsController < ApplicationController
         turbo_stream.replace(cart_item),
         turbo_stream.replace(cart, partial: 'carts/min_cart', locals: { cart: cart }),
         turbo_stream.replace('cart_total', partial: 'carts/cart_total', locals: { cart: cart }),
-        turbo_stream.replace('flash', partial: 'shared/flash', locals: { flash: flash }),
+        turbo_stream.replace('flash', partial: 'shared/flash'),
       ]
+    else
+      flash.now[:alert] = 'Cart item could not be updated'
+
+      render turbo_stream: turbo_stream.replace('flash', partial: 'shared/flash')
     end
   end
 
@@ -37,8 +45,12 @@ class CartItemsController < ApplicationController
         turbo_stream.remove(cart_item),
         turbo_stream.replace(cart, partial: 'carts/min_cart', locals: { cart: cart }),
         turbo_stream.replace('cart_total', partial: 'carts/cart_total', locals: { cart: cart }),
-        turbo_stream.replace('flash', partial: 'shared/flash', locals: { flash: flash }),
+        turbo_stream.replace('flash', partial: 'shared/flash'),
       ]
+    else
+      flash.now[:alert] = 'Cart item could not be removed'
+
+      render turbo_stream: turbo_stream.replace('flash', partial: 'shared/flash')
     end
   end
 

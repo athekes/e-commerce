@@ -10,6 +10,8 @@ class OrdersController < ApplicationController
       @cart.destroy
 
       redirect_to order_path(@order), notice: 'Order placed successfully'      
+    else
+      redirect_to @cart, alert: @order.errors.full_messages.join(', ')
     end
   end
 end
