@@ -1,0 +1,36 @@
+<div class='flex flex-col '>
+  <div class='flex justify-between items-center'>
+    <h2 class='text-xl font-bold text-gray-700'> Orders </h2>
+  </div>
+
+  <div class='flex flex-col mt-4'>
+    <% @orders.each do |order| %>
+      <div class='flex justify-between items-center mt-2'>
+        <h3 class='text-lg text-gray-700'> Order ID </h3>
+        <p class='text-lg text-gray-700'> <%= order.id %> </p>
+      </div>
+
+      <div class='flex justify-between items-center mt-2'>
+        <h3 class='text-lg text-gray-700'> Order Date </h3>
+        <p class='text-lg text-gray-700'> <%= order.created_at.strftime('%d %b %Y') %> </p>
+      </div>
+
+      <div class='flex justify-between items-center mt-2'>
+        <h3 class='text-lg text-gray-700'> Order Status </h3>
+        <p class='text-lg text-gray-700'> <%= order.status %> </p>
+      </div>
+
+      <div class='flex justify-between items-center mt-2'>
+        <h3 class='text-lg text-gray-700'> Total Amount </h3>
+        <p class='text-lg text-gray-700'> <%= order.total_value %> </p>
+      </div>
+
+      <div class='flex justify-between items-center mt-2'>
+        <%= link_to 'View Order', order_path(order), class: 'text-blue-500' %>
+      </div>
+
+      <hr class='my-4'>
+    <% end %>
+  </div>
+</div>
+

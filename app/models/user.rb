@@ -9,6 +9,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
   has_one :cart, dependent: :destroy
+  has_many :orders, dependent: :destroy
 
   attr_writer :login
 
