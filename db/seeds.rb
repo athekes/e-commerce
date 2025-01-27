@@ -11,19 +11,58 @@
 
 # create user
 User.create!(
-  email: 'lgx.0097@gmail.com',
+  email: 'teste@teste.com',
   password: '123123',
   name: 'Gustavo',
   cpf: '123123'
 )
 
 # create products
-10.times do |i|
-  Product.create!(
-    name: "Product #{i + 1}",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras risus sapien, molestie sed urna eu, tincidunt elementum turpis. Praesent bibendum tempus ligula sed rhoncus. Quisque efficitur nisl id sem tempor pretium. Suspendisse efficitur nisi orci, id suscipit risus accumsan tempus. Aliquam volutpat mi vitae dolor mollis, nec tempus augue tincidunt. Praesent sed vehicula purus, non imperdiet neque. Vivamus viverra, justo non mattis aliquam, arcu nulla ultrices justo, id rhoncus velit sapien non eros. Cras commodo enim sed eros aliquet faucibus. Donec tincidunt nibh a posuere sollicitudin.",
-    price_cents: 1000 + i * 100,
-    stock_quantity: 10 + i,
-    image_url: "https://picsum.photos/200/300"
-  )
+products = [
+  {
+    name: "Smartphone Premium",
+    description: "Um smartphone com tela AMOLED de 6.5 polegadas, câmera tripla de 50MP e 128GB de armazenamento. Perfeito para quem busca performance e estilo.",
+    price_cents: 299_99,
+    stock_quantity: 25,
+    image_url: "https://images.pexels.com/photos/50614/pexels-photo-50614.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+  },
+  {
+    name: "Notebook Ultrafino",
+    description: "Notebook ultrafino com processador Intel i7, 16GB de RAM, SSD de 512GB e bateria de longa duração. Ideal para trabalho e lazer.",
+    price_cents: 599_99,
+    stock_quantity: 15,
+    image_url: "https://images.pexels.com/photos/265087/pexels-photo-265087.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+  },
+  {
+    name: "Fone de Ouvido Bluetooth",
+    description: "Fone de ouvido sem fio com cancelamento de ruído ativo, som de alta qualidade e até 24 horas de bateria. Confortável e prático para o dia a dia.",
+    price_cents: 129_99,
+    stock_quantity: 50,
+    image_url: "https://images.pexels.com/photos/18236754/pexels-photo-18236754/free-photo-of-cabo-fio-conexao-ligacao.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+  },
+  {
+    name: "Relógio Inteligente",
+    description: "Relógio inteligente com monitoramento de atividades físicas, notificações em tempo real e resistência à água. Compatível com Android e iOS.",
+    price_cents: 199_99,
+    stock_quantity: 30,
+    image_url: "https://images.pexels.com/photos/437037/pexels-photo-437037.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+  },
+  {
+    name: "Câmera DSLR",
+    description: "Câmera DSLR com lente intercambiável de 18-55mm, sensor de alta resolução e modos automáticos para iniciantes e profissionais.",
+    price_cents: 799_99,
+    stock_quantity: 10,
+    image_url: "https://images.pexels.com/photos/1787220/pexels-photo-1787220.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+  },
+  {
+    name: "Garrafa Térmica Inox",
+    description: "Garrafa térmica de aço inoxidável com capacidade de 1 litro. Mantém bebidas quentes ou frias por até 12 horas. Ideal para uso diário ou viagens.",
+    price_cents: 79_99,
+    stock_quantity: 40,
+    image_url: "https://images.pexels.com/photos/6606317/pexels-photo-6606317.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&dpr=1"
+  }
+]
+
+products.each do |product|
+  Product.create!(product)
 end
