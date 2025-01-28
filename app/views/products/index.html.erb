@@ -4,7 +4,7 @@
   </div>
 
   <div class="grid md:grid-cols-3 gap-4 mt-4">
-    <% @products.each do |product| %>
+    <% @products.order(:id).each do |product| %>
       <div class="border rounded-lg px-4 pb-4 pt-1 ">
         <h2 class="text-lg font-medium text-gray-700"><%= product.name %></h2>
 

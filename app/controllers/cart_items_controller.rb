@@ -1,26 +1,26 @@
 class CartItemsController < ApplicationController
   def create
-    cart_item = CartItem.new(cart_item_params)
+    result = AddToCart.new(cart: current_cart, cart_item_params:).call
 
-    if @cart.add_cart_item(cart_item)
+    if result[:success]
       flash.now[:notice] = 'Item do carrinho adicionado com sucesso'
     else
-      flash.now[:alert]  = 'Item do carrinho não pôde ser adicionado'
+      flash.now[:alert] = result[:message]
     end
   end
 
   def update
-    @cart_item = @cart.cart_items.find(params[:id])
+    @cart_item = current_cart.cart_items.find(params[:id])
 
-    if @cart_item.update(cart_item_params)
+    if @success = @cart_item.update(cart_item_params)
       flash.now[:notice] = 'Item do carrinho atualizado com sucesso'
     else
-      flash.now[:alert] =  'Item do carrinho não pôde ser atualizado'
+      flash.now[:alert] =  @cart_item.errors.full_messages.join(', ')
     end
   end
 
   def destroy
-    @cart_item = @cart.cart_items.find(params[:id])
+    @cart_item = current_cart.cart_items.find(params[:id])
     
     if @success = @cart_item.destroy
       flash.now[:notice] = 'Item do carrinho removido com sucesso'

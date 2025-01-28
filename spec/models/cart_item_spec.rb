@@ -9,6 +9,24 @@ RSpec.describe CartItem, type: :model do
   describe 'validations' do
     it { is_expected.to validate_presence_of(:quantity) }
     it { is_expected.to validate_numericality_of(:quantity).is_greater_than(0) }
+
+    describe 'validations' do
+      describe 'stock_availability' do
+        it 'adds an error if the quantity is greater than the product stock quantity' do
+          product = Product.new(
+            name:           'Product',
+            description:    'Description',
+            price_cents:    1000,
+            stock_quantity: 10
+          )
+  
+          cart_item = CartItem.new(quantity: 11, product: product)
+          
+          expect(cart_item).to be_invalid
+          expect(cart_item.errors.full_messages).to include('Quantidade adicionada ao carrinho não está disponível em estoque')
+        end
+      end
+    end
   end
 
   describe '#total_value_cents' do

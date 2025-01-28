@@ -21,4 +21,8 @@ class ApplicationController < ActionController::Base
 
     @cart = current_user.cart || current_user.create_cart
   end
+
+  def current_cart
+    @cart
+  end
 end

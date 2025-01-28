@@ -11,6 +11,8 @@
         password_confirmation: "Confirmação de senha"
       order:
         order_items: "Itens da compra"
+      cart_item:
+        quantity: "Quantidade"
 
     errors:
       messages:
@@ -24,3 +26,4 @@
         confirmation: "não confere"
         too_short: "muito curta"
         too_long: "muito longa"
+        greater_than: "deve ser maior que %{count}"
