@@ -70,4 +70,4 @@ O comportamento dinâmico nas views foi majoritariamente gerenciado pelo uso das
 
 ## Estilização
 
-A estilização foi majoriatariamente construida com o uso do tailwindcss.
+A estilização foi majoritariamente construida com o uso do tailwindcss.
