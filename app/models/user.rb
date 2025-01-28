@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          authentication_keys: [:login]
 
-  validates :cpf, presence: true, uniqueness: { case_sensitive: false }
+  validates :cpf, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 11 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }
 
   has_one :cart, dependent: :destroy
