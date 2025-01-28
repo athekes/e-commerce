@@ -3,7 +3,9 @@
       <div class='flex justify-between items-center'>
         <h2 class="text-lg font-medium text-gray-700"><%= cart_item.product.name %></h2>
 
-        <%= link_to 'Remover', cart_item, data: { turbo_method: :delete, turbo_confirm: 'Tem certeza?' } %>
+        <%= link_to cart_item, data: { turbo_method: :delete, turbo_confirm: 'Tem certeza que deseja remover este produto?' } do %>
+          <i class="la-2x las la-trash-alt text-gray-700"></i>
+        <% end %>
       </div>
     <% end %>
 

@@ -1,5 +1,10 @@
 <div class='flex flex-col'>
+  <%= link_to products_path, class: 'font-bold text-gray-700 mb-5' do %>
+      <i class="la-lg las la-arrow-circle-left"></i> Catálogo de produtos
+  <% end %>
+
   <div class="rounded border rounded-lg p-5">
+
     <div class='md:flex justify-between items-center p-4'>
       <%= image_tag @product.image_url  %>
 
@@ -22,7 +27,9 @@
           <%= f.label :quantity, 'Quantidade', class: 'block mt-5 text-sm font-bold text-gray-700' %>
           <%= f.number_field :quantity, in: 1..@product.stock_quantity, class: 'w-full py-2 px-3 shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline'%>
 
-          <%= f.submit 'Adicionar ao carrinho', class: 'mt-2 py-2 font-medium text-gray-700 cursor-pointer' %>
+          <%= button_tag type: 'submit', class: 'mt-2 py-2 font-medium text-gray-700 cursor-pointer' do %>
+            Adicionar ao carrinho
+          <% end %>
         <% end %>
       </div>
     </div>

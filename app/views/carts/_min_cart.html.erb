@@ -1,3 +1,7 @@
 <div id='<%= dom_id(cart) %>'>
-  <%= link_to "Carrinho", cart %> | R$ <%= cart.total_value %>
+  <%= link_to cart do %>
+    Carrinho <i class="la-lg las la-shopping-cart"></i>
+  <% end %>
+
+  | R$ <%= cart.total_value %>
 </div>
