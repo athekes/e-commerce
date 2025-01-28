@@ -4,32 +4,41 @@
   </div>
 
   <div class='flex flex-col mt-4'>
-    <% @orders.each do |order| %>
-      <div class='flex justify-between items-center mt-2'>
-        <h3 class='text-lg text-gray-700'> ID da compra </h3>
-        <p class='text-lg text-gray-700'> <%= order.id %> </p>
+    <% if @orders.empty? %>
+      <div class='flex flex-col items-center justify-center min-h-3.5' style="min-height: 50vh;">
+        <div>
+          <p class='text-gray-500'>Você ainda não fez nenhuma compra</p>
+          <%= link_to 'Ver produtos', products_path, class: 'w-48 text-gray-700 font-bold ' %>
+        </div>
       </div>
+    <% else %>
+      <% @orders.order(:id).each do |order| %>
+        <div class='flex justify-between items-center mt-2'>
+          <h3 class='text-lg text-gray-700'> ID da compra </h3>
+          <p class='text-lg text-gray-700'> <%= order.id %> </p>
+        </div>
 
-      <div class='flex justify-between items-center mt-2'>
-        <h3 class='text-lg text-gray-700'> Data da compra </h3>
-        <p class='text-lg text-gray-700'> <%= order.created_at.strftime('%d %b %Y') %> </p>
-      </div>
+        <div class='flex justify-between items-center mt-2'>
+          <h3 class='text-lg text-gray-700'> Data da compra </h3>
+          <p class='text-lg text-gray-700'> <%= order.created_at.strftime('%d %b %Y') %> </p>
+        </div>
 
-      <div class='flex justify-between items-center mt-2'>
-        <h3 class='text-lg text-gray-700'> Status da compra </h3>
-        <p class='text-lg text-gray-700'> <%= order.status %> </p>
-      </div>
+        <div class='flex justify-between items-center mt-2'>
+          <h3 class='text-lg text-gray-700'> Status da compra </h3>
+          <p class='text-lg text-gray-700'> <%= order.status %> </p>
+        </div>
 
-      <div class='flex justify-between items-center mt-2'>
-        <h3 class='text-lg text-gray-700'> Total </h3>
-        <p class='text-lg text-gray-700'> <%= order.total_value %> </p>
-      </div>
+        <div class='flex justify-between items-center mt-2'>
+          <h3 class='text-lg text-gray-700'> Total </h3>
+          <p class='text-lg text-gray-700'> <%= order.total_value %> </p>
+        </div>
 
-      <div class='flex justify-between items-center mt-2'>
-        <%= link_to 'Ver detalhes', order_path(order), class: 'text-blue-500' %>
-      </div>
+        <div class='flex justify-between items-center mt-2'>
+          <%= link_to 'Ver detalhes', order_path(order), class: 'text-blue-500' %>
+        </div>
 
-      <hr class='my-4'>
+        <hr class='my-4'>
+      <% end %>
     <% end %>
   </div>
 </div>

@@ -3,10 +3,20 @@
     <h1 class='text-2xl font-bold text-gray-700'> Carrinho </h1>
   </div>
 
-  <div class="grid md:grid-cols-3 gap-4 mt-4">
-    <% @cart.cart_items.order(:id).each do |cart_item| %>
-      <%= render partial: 'cart_items/cart_item', locals: { cart_item: cart_item } %>
-    <% end %>
+  <% if @cart.cart_items.empty? %>
+    <div class='flex flex-col items-center justify-center min-h-3.5' style="min-height: 50vh;">
+      <div>
+        <p class='text-gray-500'>Seu carrinho está vazio</p>
+        <%= link_to 'Ver produtos', products_path, class: 'w-48 text-gray-700 font-bold py-2 rounded' %>
+      </div>
+    </div>
+  <% else %>
+    <div class="grid md:grid-cols-3 gap-4 mt-4">
+      <% @cart.cart_items.order(:id).each do |cart_item| %>
+        <%= render partial: 'cart_items/cart_item', locals: { cart_item: cart_item } %>
+      <% end %>
+    </div>
+  <% end %>
   </div>
 
   <div class='flex my-4 justify-end'>
