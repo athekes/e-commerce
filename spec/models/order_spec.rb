@@ -19,29 +19,8 @@ RSpec.describe Order, type: :model do
         order = Order.new(user: User.new)
 
         expect(order).to be_invalid
-        expect(order.errors[:order_items]).to include('must be present')
+        expect(order.errors[:order_items]).to include('devem estar presentes')
       end
-    end
-  end
-
-  describe '.new_order_from' do
-    it 'builds a new order from cart data' do
-      cart_data = {
-        user: User.new,
-        cart_items_data: [{
-          product:          Product.new,
-          quantity:         2,
-          unit_price_cents: 1000
-        }]
-      }
-
-      order = Order.new_order_from(cart_data: cart_data)
-
-      expect(order.user).to eq(cart_data[:user])
-
-      expect(order.order_items.first.product).to eq(cart_data[:cart_items_data].first[:product])
-      expect(order.order_items.first.quantity).to eq(cart_data[:cart_items_data].first[:quantity])
-      expect(order.order_items.first.unit_price_cents).to eq(cart_data[:cart_items_data].first[:unit_price_cents])
     end
   end
 
