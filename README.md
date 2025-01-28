@@ -67,3 +67,7 @@ Serviço responsável por criar um pedido a partir de um carrinho e descontar do
 ## Comportamento dinâmico
 
 O comportamento dinâmico nas views foi majoritariamente gerenciado pelo uso das features do hotwire (Turbo Drive/Stimulus) disponíveis no rails 8.
+
+## Estilização
+
+A estilização foi majoriatariamente construida com o uso do tailwindcss.
